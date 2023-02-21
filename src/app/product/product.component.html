@@ -1,0 +1,61 @@
+<div class="container">
+  <h2>CRUD</h2>
+  <p>Supper car!</p>
+  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" (click)="cleanModal()">
+    Create
+  </button>
+  <table class="table table-hover" border="1px">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Price</th>
+      <th>Manager</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let p of products">
+      <td>{{p.id}}</td>
+      <td>{{p.name }}</td>
+      <td> <img src="{{p.img}}" width="300" height="200"></td>
+      <td>{{p.price}}</td>
+      <td>
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal" (click)="showEditModal(p.id)">Edit</button>
+        <button type="button" class="btn btn-danger" (click)="deleteProduct(p.id)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Input form!</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <input placeholder="nhập id" [(ngModel)]="product.id" hidden="hidden"> <br>
+        <label>Input name</label><br>
+        <input placeholder="nhập name" [(ngModel)]="product.name"><br>
+        <label>Input src img</label><br>
+        <input placeholder="nhập img" [(ngModel)]="product.img"><br>
+        <label>Input price</label><br>
+        <input placeholder="nhập price" [(ngModel)]="product.price"><br>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="createProduct()">Submit</button>
+      </div>
+
+    </div>
+  </div>
+</div>
